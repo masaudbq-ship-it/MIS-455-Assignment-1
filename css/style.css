@@ -1,0 +1,173 @@
+/* ===== Tigers Zone: main stylesheet ===== */
+
+/* --- Colour palette (CSS variables) --- */
+:root {
+  --navy: #0b1f3a;
+  --navy-2: #14315c;
+  --green: #006a4e;
+  --green-2: #1fa36b;
+  --red: #f42a41;
+  --text: #e8eef6;
+  --muted: #9fb3c8;
+}
+
+/* --- Reset + base --- */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Barlow", sans-serif;      /* body font */
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text);
+  background-color: var(--navy);
+}
+h1, h2, h3 {
+  font-family: "Bebas Neue", sans-serif;  /* heading font */
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  color: #ffffff;
+}
+a { color: var(--green-2); }
+a:hover { color: #ffffff; }
+
+/* --- Navigation bar (flex) --- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 12px 32px;
+  background-color: var(--navy-2);
+  border-bottom: 4px solid var(--green);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+.logo {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 32px;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-decoration: none;
+}
+.logo span { color: var(--red); }
+.nav-list {
+  display: flex;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.nav-list a {
+  display: block;
+  padding: 8px 16px;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 6px;
+}
+.nav-list a:hover,
+.nav-list a:focus-visible { background-color: var(--green); color: #ffffff; }
+.nav-list a.active { background-color: var(--green-2); color: #04210f; font-weight: 600; }
+
+/* --- Hero banner --- */
+.hero {
+  padding: 90px 32px;
+  text-align: center;
+  background-color: var(--green);
+  border-bottom: 6px solid var(--red);
+}
+.hero h1 { margin: 0 0 10px; font-size: 80px; }
+.hero .lead { margin: 0 auto; max-width: 600px; font-size: 22px; color: #eafff5; }
+.hero-home { background-color: var(--navy-2); }
+.hero-legends { background-color: #0d4f63; }
+.hero-stadium { background-color: #1a3a6e; }
+.hero-records { background-color: #0a5a3c; }
+
+/* --- Main content --- */
+.content { max-width: 980px; margin: 0 auto; padding: 48px 24px; }
+.content h2 { font-size: 44px; margin-top: 0; color: var(--green-2); }
+.content p { max-width: 70ch; }
+figure { margin: 0; }
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;      /* all images get the same shape */
+  object-fit: cover;          /* crop nicely instead of stretching */
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+  transition: transform 0.3s;
+}
+img:hover { transform: scale(1.03); }
+figcaption { margin-top: 10px; font-size: 15px; color: var(--muted); }
+
+/* Default image row (Home, Tigers, Records) */
+.image-row { margin: 32px 0; }
+.image-row figure { margin-bottom: 24px; }
+
+/* --- FLEXBOX layout (used on stadium.html) --- */
+.flex-row {
+  display: flex;
+  gap: 24px;
+  margin: 32px 0;
+}
+.flex-row figure { flex: 1; }
+
+/* --- GRID layout (used on legends.html): 6 columns, 3 cards on top, 2 below --- */
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+  margin: 32px 0;
+}
+.player-card {
+  grid-column: span 2;
+  padding: 18px;
+  background-color: var(--navy-2);
+  border-top: 5px solid var(--green-2);
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+.player-card:nth-child(4),
+.player-card:nth-child(5) { grid-column: span 3; }
+.player-card img { aspect-ratio: 1 / 1; object-position: top; }
+.player-card:nth-child(n+4) img { aspect-ratio: 16 / 9; }
+.player-card h3 { margin: 16px 0 4px; font-size: 32px; }
+.player-card p { margin: 0; font-size: 16px; color: var(--muted); }
+
+/* --- Records table --- */
+.table-wrap { overflow-x: auto; margin: 32px 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--navy-2);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+th { padding: 12px 16px; text-align: left; background-color: var(--green); color: #ffffff; }
+td { padding: 12px 16px; border-bottom: 1px solid #27497f; }
+td:first-child { width: 90px; font-weight: 600; color: var(--green-2); }
+
+/* --- Footer --- */
+.site-footer {
+  padding: 24px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--muted);
+  background-color: #07152a;
+  border-top: 4px solid var(--green);
+}
+.site-footer p { margin: 4px 0; }
+
+/* --- Small screens --- */
+@media (max-width: 700px) {
+  .site-header { justify-content: center; gap: 10px; }
+  .hero h1 { font-size: 52px; }
+  .flex-row { flex-direction: column; }
+  .player-grid { grid-template-columns: 1fr; }
+  .player-card,
+  .player-card:nth-child(4),
+  .player-card:nth-child(5) { grid-column: auto; }
+}
